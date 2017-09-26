@@ -1,0 +1,31 @@
+{
+    "name": "dymantic/slideshow",
+    "description": "Simple package for managing user created slideshows. Does not include frontend or view stuff.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Joyner",
+            "email": "joyner.michael@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.5",
+        "illuminate/database": "^5.5",
+        "illuminate/queue": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "orchestra/testbench": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dymantic\\Slideshow\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Dymantic\\Slideshow\\Tests\\": "tests"
+        }
+    }
+}
