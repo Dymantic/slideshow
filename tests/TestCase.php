@@ -43,6 +43,11 @@ abstract class TestCase extends Orchestra
         });
     }
 
+    public function assertJsonValidationErrorExists($field, $response)
+    {
+        return $this->assertArrayHasKey($field, $response->decodeResponseJson()['errors']);
+    }
+
     /**
      * @param \Illuminate\Foundation\Application $app
      *
@@ -72,6 +77,11 @@ abstract class TestCase extends Orchestra
         $app['config']->set('filesystems.disks.media', [
             'driver' => 'local',
             'root'   => __DIR__ . '/temp/media',
+        ]);
+
+        $app['config']->set('filesystems.disks.videos', [
+            'driver' => 'local',
+            'root'   => __DIR__ . '/temp/videos',
         ]);
 
         $app['config']->set('medialibrary', [
@@ -162,9 +172,9 @@ abstract class TestCase extends Orchestra
 
         TestUserModel::create(['name' => 'test user', 'email' => 'test@example.com', 'password' => 'password']);
 
-        include_once __DIR__ . '/../database/migrations/create_articles_table.php.stub';
+        include_once __DIR__ . '/../database/migrations/create_slides_table.php.stub';
 
-        (new \CreateArticlesTable())->up();
+        (new \CreateSlidesTable())->up();
     }
 
     protected function initializeDirectory($directory)
