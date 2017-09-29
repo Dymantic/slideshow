@@ -58,13 +58,26 @@ class CreateSlideTest extends TestCase
     /**
      *@test
      */
-    public function creating_a_slide_requires_the_video_slide_flag()
+    public function creating_a_slide_without_the_video_slide_field_assumes_image_slide()
     {
+        $this->disableExceptionHandling();
         $response = $this->asLoggedInUser()->post('/admin/slideshow/slides', []);
         $response->assertStatus(302);
-        $response->assertSessionHasErrors('video_slide');
 
-        $this->assertCount(0, Slide::all());
+
+        $this->assertCount(1, Slide::all());
+        $slide_id = Slide::first()->id;
+        $response->assertRedirect("/admin/slideshow/slides/{$slide_id}");
+
+        $this->assertDatabaseHas('slides', [
+            'id'          => $slide_id,
+            'is_video'    => false,
+            'video_path'  => null,
+            'slide_text'  => null,
+            'action_text' => null,
+            'action_link' => null,
+            'text_colour' => null
+        ]);
     }
 
     /**

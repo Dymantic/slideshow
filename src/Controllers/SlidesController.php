@@ -8,9 +8,9 @@ class SlidesController extends Controller
 {
     public function store()
     {
-        request()->validate(['video_slide' => 'required|boolean']);
+        request()->validate(['video_slide' => 'boolean']);
 
-        $slide = request('video_slide') ? Slide::createVideoSlide() : Slide::createImageSlide();
+        $slide = request('video_slide', false) ? Slide::createVideoSlide() : Slide::createImageSlide();
 
         return redirect("/admin/slideshow/slides/{$slide->id}");
     }
