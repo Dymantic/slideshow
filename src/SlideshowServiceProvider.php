@@ -15,7 +15,7 @@ class SlideshowServiceProvider extends ServiceProvider
     {
         if (!class_exists('CreateSlidesTable')) {
             $this->publishes([
-                __DIR__ . '/../database/migrations/create_articles_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_slides_table.php'),
+                __DIR__ . '/../database/migrations/create_slides_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_slides_table.php'),
             ], 'migrations');
         }
 
