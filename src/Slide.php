@@ -95,6 +95,7 @@ class Slide extends Model implements HasMediaConversions
     public function imageUrl($conversion = '')
     {
         $image = $this->getFirstMedia(static::SLIDE_IMAGES);
+
         return $image ? $image->getUrl($conversion) : null;
     }
 
@@ -114,7 +115,7 @@ class Slide extends Model implements HasMediaConversions
 
     public function setVideo(UploadedFile $file)
     {
-        if($this->hasVideo()) {
+        if ($this->hasVideo()) {
             $this->clearExistingVideo();
         }
         $filename = $file->store('', 'videos');
@@ -149,19 +150,21 @@ class Slide extends Model implements HasMediaConversions
     public function toJsonableArray()
     {
         return [
-            'is_video' => $this->is_video,
-            'video_path' => $this->video_path,
-            'slide_text' => $this->slide_text,
-            'action_text' => $this->action_text,
-            'action_link' => $this->action_link,
-            'text_colour' => $this->text_colour,
-            'has_image' => $this->hasImage(),
-            'thumb_image' => $this->imageUrl('thumb'),
+            'id'           => $this->id,
+            'slide_type'   => $this->is_video ? 'video' : 'image',
+            'is_video'     => $this->is_video,
+            'video_path'   => $this->video_path,
+            'slide_text'   => $this->slide_text,
+            'action_text'  => $this->action_text,
+            'action_link'  => $this->action_link,
+            'text_colour'  => $this->text_colour,
+            'has_image'    => $this->hasImage(),
+            'thumb_image'  => $this->imageUrl('thumb'),
             'square_image' => $this->imageUrl('square'),
             'taller_image' => $this->imageUrl('taller'),
             'banner_image' => $this->imageUrl('banner'),
-            'has_video' => $this->hasVideo(),
-            'video_url' => $this->videoUrl()
+            'has_video'    => $this->hasVideo(),
+            'video_url'    => $this->videoUrl()
         ];
     }
 

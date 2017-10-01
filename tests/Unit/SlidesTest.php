@@ -12,7 +12,7 @@ class SlidesTest extends TestCase
     use MakesModels;
 
     /**
-     *@test
+     * @test
      */
     public function an_empty_image_slide_can_be_created()
     {
@@ -28,7 +28,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function an_empty_video_slide_can_be_created()
     {
@@ -43,7 +43,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_slide_can_be_published()
     {
@@ -55,7 +55,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_slide_can_be_retracted()
     {
@@ -67,41 +67,43 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_slide_can_be_presented_as_a_jsonable_array()
     {
         $slide = $this->createSlide([
-            'is_video' => true,
-            'slide_text' => 'TEST SLIDE TEXT',
+            'is_video'    => true,
+            'slide_text'  => 'TEST SLIDE TEXT',
             'action_text' => 'TEST ACTION TEXT',
             'action_link' => 'TEST ACTION LINK',
             'text_colour' => 'TEST COLOUR',
-            'position' => 3
+            'position'    => 3
         ]);
         $filename = $slide->setVideo(UploadedFile::fake()->create('video.mp4'));
 
         $expected = [
-            'is_video' => true,
-            'video_path' => $filename,
-            'slide_text' => 'TEST SLIDE TEXT',
-            'action_text' => 'TEST ACTION TEXT',
-            'action_link' => 'TEST ACTION LINK',
-            'text_colour' => 'TEST COLOUR',
-            'has_image' => false,
-            'thumb_image' => null,
+            'id'           => $slide->id,
+            'slide_type'   => 'video',
+            'is_video'     => true,
+            'video_path'   => $filename,
+            'slide_text'   => 'TEST SLIDE TEXT',
+            'action_text'  => 'TEST ACTION TEXT',
+            'action_link'  => 'TEST ACTION LINK',
+            'text_colour'  => 'TEST COLOUR',
+            'has_image'    => false,
+            'thumb_image'  => null,
             'square_image' => null,
             'taller_image' => null,
             'banner_image' => null,
-            'has_video' => true,
-            'video_url' => '/videos/' . $filename
+            'has_video'    => true,
+            'video_url'    => '/videos/' . $filename
         ];
 
         $this->assertEquals($expected, $slide->toJsonableArray());
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_slide_knows_if_it_has_its_own_image()
     {
@@ -114,7 +116,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function the_url_of_the_slides_image_can_be_queried()
     {
@@ -128,7 +130,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function image_urls_are_null_for_non_existing_images()
     {
@@ -141,7 +143,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_slide_knows_if_it_has_a_video()
     {
@@ -154,7 +156,7 @@ class SlidesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      * @group makes-images
      */
     public function a_slide_is_usable_if_it_has_either_an_image_or_video_and_is_also_published()
