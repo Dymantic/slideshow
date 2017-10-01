@@ -13,5 +13,7 @@ class SlideImageController extends Controller
         request()->validate(['image' => 'required|image']);
 
         $slide->setImage(request('image'));
+
+        return ['url' => $slide->fresh()->imageUrl('banner')];
     }
 }

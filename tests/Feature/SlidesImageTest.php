@@ -28,6 +28,10 @@ class SlidesImageTest extends TestCase
                          ]);
         $response->assertStatus(200);
         $this->assertCount(1, $slide->fresh()->getMedia(Slide::SLIDE_IMAGES));
+        $image = $slide->fresh()->getFirstMedia(Slide::SLIDE_IMAGES);
+
+        $response_data = $response->decodeResponseJson();
+        $this->assertEquals($image->getUrl('banner'), $response_data['url']);
     }
 
     /**
