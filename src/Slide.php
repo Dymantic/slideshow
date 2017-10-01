@@ -55,7 +55,7 @@ class Slide extends Model implements HasMediaConversions
              ->optimize();
 
         $this->addMediaConversion('banner')
-             ->fit(Manipulations::FIT_CROP, 1400, 540)
+             ->fit(Manipulations::FIT_CROP, 1400, 560)
              ->keepOriginalImageFormat()
              ->performOnCollections(static::SLIDE_IMAGES)
              ->optimize();
