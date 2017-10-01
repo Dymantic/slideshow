@@ -37,5 +37,7 @@ class SlidesController extends Controller
     public function delete(Slide $slide)
     {
         $slide->delete();
+
+        return redirect('/admin/slideshow/slides');
     }
 }
