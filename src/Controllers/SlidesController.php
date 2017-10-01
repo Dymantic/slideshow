@@ -18,8 +18,9 @@ class SlidesController extends Controller
     public function update(Slide $slide)
     {
         request()->validate([
-            'slide_text' => 'max:60',
-            'action_text' => 'max:16'
+            'slide_text'  => 'max:60',
+            'action_text' => 'max:16',
+            'action_link' => 'url|nullable'
         ]);
         $slide->update(request()->all([
             'slide_text',
@@ -32,7 +33,7 @@ class SlidesController extends Controller
     }
 
     /**
-     *@test
+     * @test
      */
     public function delete(Slide $slide)
     {
