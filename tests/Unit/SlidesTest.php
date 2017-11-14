@@ -96,6 +96,7 @@ class SlidesTest extends TestCase
             'taller_image' => null,
             'banner_image' => null,
             'has_video'    => true,
+            'published'    => false,
             'video_url'    => '/videos/' . $filename
         ];
 

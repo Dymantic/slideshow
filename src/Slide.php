@@ -164,7 +164,8 @@ class Slide extends Model implements HasMediaConversions
             'taller_image' => $this->imageUrl('taller'),
             'banner_image' => $this->imageUrl('banner'),
             'has_video'    => $this->hasVideo(),
-            'video_url'    => $this->videoUrl()
+            'video_url'    => $this->videoUrl(),
+            'published'    => $this->published
         ];
     }
 
