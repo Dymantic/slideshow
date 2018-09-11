@@ -85,10 +85,10 @@ abstract class TestCase extends Orchestra
         ]);
 
         $app['config']->set('medialibrary', [
-            'default_filesystem'          => 'media',
+            'disk_name'          => 'media',
             'max_file_size'               => 1024 * 1024 * 10,
             'queue_name'                  => '',
-            'media_model'                 => \Spatie\MediaLibrary\Media::class,
+            'media_model'                 => \Spatie\MediaLibrary\Models\Media::class,
             'image_driver'                => 'gd',
             'custom_url_generator_class'  => null,
             'custom_path_generator_class' => null,
@@ -166,6 +166,7 @@ abstract class TestCase extends Orchestra
             $table->unsignedInteger('size');
             $table->json('manipulations');
             $table->json('custom_properties');
+            $table->json('responsive_images');
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();
         });
