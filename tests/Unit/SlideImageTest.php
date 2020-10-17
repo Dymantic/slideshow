@@ -8,7 +8,7 @@ use Dymantic\Slideshow\Slide;
 use Dymantic\Slideshow\Tests\MakesModels;
 use Dymantic\Slideshow\Tests\TestCase;
 use Illuminate\Http\UploadedFile;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class SlideImageTest extends TestCase
 {
