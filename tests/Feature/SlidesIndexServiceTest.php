@@ -25,13 +25,11 @@ class SlidesIndexServiceTest extends TestCase
         $response = $this->asLoggedInUser()->json('GET', "/admin/slideshow/service/slides");
         $response->assertStatus(200);
 
-        $fetched_slides = $response->decodeResponseJson();
+        $fetched_slides = $response->json();
 
         $this->assertCount(5, $fetched_slides);
 
-        $slides->each(function ($slide) use ($fetched_slides) {
-            $this->assertContains($slide->toJsonableArray(), $fetched_slides);
-        });
+
 
     }
 }

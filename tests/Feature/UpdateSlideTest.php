@@ -54,7 +54,7 @@ class UpdateSlideTest extends TestCase
                          ]);
         $response->assertStatus(200);
 
-        $this->assertEquals($slide->fresh()->toJsonableArray(), $response->decodeResponseJson());
+        $this->assertEquals($slide->fresh()->toJsonableArray(), $response->json());
     }
     
     /**
